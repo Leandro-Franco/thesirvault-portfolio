@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Seus arquivos · The Sir Vault</title>
+    <!-- Página pessoal: não deve aparecer no Google nem vazar o link por Referer. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#100d09" />
+    <link rel="stylesheet" href="/src/estilos/base.css" />
+    <link rel="stylesheet" href="/src/estilos/comprador.css" />
+  </head>
+
+  <body>
+    <main class="pagina">
+      <header class="topo">
+        <a class="marca" href="/">◈ THE SIR VAULT</a>
+      </header>
+
+      <!-- Mensagem de retorno do Mercado Pago (aprovado, pendente, falhou) -->
+      <p id="retorno-do-pagamento" class="faixa" role="status" hidden></p>
+
+      <p id="carregando" hidden>Carregando seus arquivos…</p>
+
+      <!-- Área do cliente: aparece quando o link pessoal é válido -->
+      <section id="area-do-cliente" hidden>
+        <h1>Olá, <span id="nome-do-cliente"></span>.</h1>
+        <p class="detalhe">
+          Este é o seu acesso vitalício ao The Sir Vault. Guarde este link nos favoritos.
+          Cada download gera um endereço que vale por 1 hora.
+        </p>
+
+        <h2>Downloads</h2>
+        <ul id="lista-de-arquivos" class="arquivos"></ul>
+
+      </section>
+
+      <!-- Recuperar acesso: aparece sem link ou com link inválido -->
+      <section id="recuperar-acesso" hidden>
+        <h1>Acessar meus arquivos</h1>
+        <p id="motivo-da-recuperacao" class="detalhe">
+          Digite o e-mail que você usou na compra. Se houver uma compra aprovada, enviamos um novo link de acesso.
+        </p>
+        <form id="formulario-recuperar" novalidate>
+          <label>
+            E-mail da compra
+            <input name="email" type="email" autocomplete="email" required maxlength="254" />
+          </label>
+          <button type="submit" class="botao-comprar">Enviar novo link</button>
+          <p class="resposta" data-resposta role="status" hidden></p>
+        </form>
+      </section>
+
+      <footer class="rodape">
+        <a href="/termos">Termos e licença</a>
+        <a href="/privacidade">Privacidade</a>
+      </footer>
+    </main>
+
+    <div id="aviso" role="status" hidden></div>
+    <script type="module" src="/src/comprador/pagina.js"></script>
+  </body>
+</html>

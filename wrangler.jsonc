@@ -1,0 +1,60 @@
+// Configuração do Cloudflare Worker do The Sir Vault.
+// Doc: https://developers.cloudflare.com/workers/wrangler/configuration/
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "thesirvault",
+  "main": "servidor/index.js",
+  "compatibility_date": "2026-10-15",
+  // Libera node:crypto (hash, HMAC, números aleatórios) dentro do Worker.
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Antes de publicar, gera o site em dist/ com o Vite.
+  "build": { "command": "npm run build" },
+
+  // Arquivos estáticos (páginas, JS, CSS). Só /api/* passa pelo Worker.
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // Banco de dados (Cloudflare D1), criado em 12/11/2026 com:  npx wrangler d1 create thesirvault
+  // O database_id é só um identificador (não é segredo): sem login na conta, ele não dá acesso a nada.
+  "d1_databases": [
+    {
+      "binding": "BANCO",
+      "database_name": "thesirvault",
+      "database_id": "SEU-DATABASE-ID",
+      "migrations_dir": "banco/migracoes"
+    }
+  ],
+
+  // Arquivos do pacote (Cloudflare R2, privado), criado com:  npx wrangler r2 bucket create seu-bucket-r2
+  "r2_buckets": [{ "binding": "ARQUIVOS", "bucket_name": "seu-bucket-r2" }],
+
+  // Variáveis públicas (não são segredos). Os segredos vão com `npx wrangler secret put`.
+  "vars": {
+    "URL_DO_SITE": "https://seu-dominio.com.br",
+    "EMAIL_REMETENTE": "The Sir Vault <acesso@seu-dominio.com.br>",
+    // Região do Amazon SES (São Paulo). Só é usada se as chaves da AWS forem cadastradas.
+    "AWS_REGIAO": "sa-east-1",
+    // Para onde vão os e-mails de alerta (erros e pagamentos estranhos). Vazio: ficam só nos logs.
+    "EMAIL_DE_ALERTAS": ""
+  },
+
+  // Domínio próprio (o DNS do domínio precisa estar na Cloudflare).
+  "routes": [{ "pattern": "seu-dominio.com.br", "custom_domain": true }],
+
+  // Limpeza diária às 06:00 UTC (03:00 em Brasília): apaga contagens de
+  // tentativas com mais de 1 dia e pedidos nunca pagos com mais de 30 dias.
+  "triggers": { "crons": ["0 6 * * *"] },
+
+  // Logs das requisições no painel da Cloudflare (Workers → thesirvault → Logs).
+  "observability": { "enabled": true },
+
+  // Desliga o endereço *.workers.dev em produção: o site só existe no domínio próprio.
+  "workers_dev": false,
+  "preview_urls": false
+}

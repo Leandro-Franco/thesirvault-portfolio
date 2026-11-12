@@ -1,0 +1,24 @@
+# Segredos para rodar o Worker no SEU computador (npm run dev:worker).
+# Copie este arquivo para .dev.vars (que fica fora do git) e preencha.
+#
+# Em produção NADA disto fica em arquivo: cada segredo é cadastrado na
+# Cloudflare com   npx wrangler secret put NOME. 
+# As variáveis públicas (URL_DO_SITE, EMAIL_REMETENTE, AWS_REGIAO)
+# ficam em wrangler.jsonc. Aqui só trocamos o endereço para o local.
+
+URL_DO_SITE=http://localhost:8787
+
+# Mercado Pago → Suas integrações → Credenciais de TESTE / Webhooks
+MERCADOPAGO_TOKEN_DE_ACESSO=TEST-...
+MERCADOPAGO_SEGREDO_DO_WEBHOOK=...
+
+# E-mail: preencha UM dos dois provedores e apague as linhas do outro.
+# Amazon SES → IAM → usuário só com ses:SendEmail → chave de acesso
+AWS_ID_DA_CHAVE_DE_ACESSO=AKIA...
+AWS_CHAVE_SECRETA=...
+# ou Resend → API Keys
+# RESEND_CHAVE=re_...
+
+# Texto aleatório longo, gerado uma vez (e diferente do de produção):
+#   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+SEGREDO_DO_SERVIDOR=...

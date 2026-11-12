@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /comprador
+Disallow: /api/
+
+Sitemap: https://seu-dominio.com.br/sitemap.xml

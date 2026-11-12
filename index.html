@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>The Sir Vault · Franco The Sir · Vol. 01</title>
+    <meta name="description" content="Mix presets, project files, drum kit e videoaulas do Franco The Sir. O som por trás do som, num único pacote." />
+    <meta name="theme-color" content="#100d09" />
+    <link rel="canonical" href="https://seu-dominio.com.br/" />
+
+    <!-- Prévia ao compartilhar o link (WhatsApp, Instagram, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="The Sir Vault" />
+    <meta property="og:title" content="The Sir Vault · Franco The Sir" />
+    <meta property="og:description" content="O som por trás do som: presets, project files, drum kit e videoaulas." />
+    <meta property="og:url" content="https://seu-dominio.com.br/" />
+
+    <link rel="stylesheet" href="/src/estilos/base.css" />
+    <link rel="stylesheet" href="/src/estilos/vitrine.css" />
+  </head>
+
+  <body>
+    <!-- Camada sobre o estúdio 3D. Fica escondida até o 3D ligar. -->
+    <div id="hud" hidden>
+      <div class="marca">
+        THE SIR VAULT
+        <small>FRANCO THE SIR · STUDIO EXPERIENCE</small>
+      </div>
+      <div class="acoes">
+        <button id="botao-voltar" type="button" hidden>← ESTÚDIO</button>
+        <button id="botao-ver-em-lista" type="button" aria-label="Ver em lista"><span class="so-no-computador">VER EM </span>LISTA</button>
+        <button type="button" class="botao-comprar" data-comprar>DESBLOQUEAR · {{preco}}</button>
+      </div>
+      <div id="dica">Arraste para olhar ao redor · Toque no monitor para explorar</div>
+    </div>
+
+    <div id="aviso" role="status" hidden></div>
+
+    <!-- Versão em HTML: aparece quando o 3D não roda e é o que o Google lê. -->
+    <main id="vitrine-html">
+      <header class="topo">
+        <span class="marca">◈ THE SIR VAULT</span>
+        <span class="assinatura">FRANCO THE SIR / VOL. 01</span>
+      </header>
+
+      <section class="chamada">
+        <h1>O som por trás do som.</h1>
+        <p>Mix presets, project files, drum kit e videoaulas do Franco The Sir, num único pacote.</p>
+        <div class="chamada-acoes">
+          <button type="button" class="botao-comprar" data-comprar>Desbloquear · {{preco}}</button>
+          <button type="button" id="botao-entrar-no-estudio" class="botao-secundario" hidden>Entrar no estúdio 3D</button>
+        </div>
+      </section>
+
+      <!-- conteudo-do-pacote -->
+
+      <footer class="rodape">
+        <a href="/comprador">Já comprei: acessar meus arquivos</a>
+        <a href="/termos">Termos e licença</a>
+        <a href="/privacidade">Privacidade</a>
+        <p class="vendedor">Vendido por [Nome do vendedor], CNPJ [00.000.000/0000-00]</p>
+      </footer>
+    </main>
+
+    <!-- Janela de compra -->
+    <dialog id="dialogo-compra" aria-labelledby="titulo-compra">
+      <form method="dialog" novalidate>
+        <h2 id="titulo-compra">Desbloquear The Sir Vault</h2>
+        <p class="detalhe">Pagamento seguro pelo Mercado Pago (Pix, cartão ou boleto). O acesso chega no seu e-mail.</p>
+
+        <label>
+          Seu nome
+          <input name="nome" type="text" autocomplete="name" required minlength="2" maxlength="80" />
+        </label>
+
+        <label>
+          Seu e-mail
+          <input name="email" type="email" autocomplete="email" required maxlength="254" />
+        </label>
+
+        <label class="aceite">
+          <input name="aceitouTermos" type="checkbox" value="sim" required />
+          <span>Li e aceito os <a href="/termos" target="_blank" rel="noopener">termos e a licença de uso</a>.</span>
+        </label>
+
+        <p class="erro" data-erro role="alert" hidden></p>
+
+        <div class="dialogo-acoes">
+          <button type="button" class="botao-secundario" data-fechar>Cancelar</button>
+          <button type="submit" class="botao-comprar">Ir para o pagamento</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/vitrine.js"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "the-sir-vault",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vitrine 3D e entrega digital do pacote The Sir Vault (Franco The Sir).",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:worker": "npm run build && wrangler dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "auditoria": "npm audit --audit-level=high",
+    "conferir:worker": "wrangler deploy --dry-run --outdir .wrangler/conferencia",
+    "banco:migrar:local": "wrangler d1 migrations apply thesirvault --local",
+    "banco:migrar": "wrangler d1 migrations apply thesirvault --remote",
+    "publicar": "npm test && npm run auditoria && wrangler deploy"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "vite": "8.3.5",
+    "wrangler": "4.153.0"
+  }
+}

@@ -1,0 +1,286 @@
+/*
+ * Vitrine (index.html).
+ * Duas formas de ver a mesma página:
+ *   - body.modo-3d: o estúdio 3D ocupa a tela e o HUD fica por cima
+ *   - sem a classe: a versão em HTML, rolável, para qualquer aparelho
+ */
+
+/* ---------- Modo 3D ---------- */
+
+body.modo-3d {
+  overflow: hidden;
+  height: 100%;
+}
+
+body.modo-3d #vitrine-html {
+  display: none;
+}
+
+canvas {
+  display: block;
+  touch-action: none;
+}
+
+body:not(.modo-3d) canvas {
+  display: none;
+}
+
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#hud .marca {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.26em;
+  text-shadow: 0 2px 8px #000;
+}
+
+#hud .marca small {
+  display: block;
+  margin-top: 5px;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: #d6a94e;
+}
+
+#hud .acoes {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+#hud button {
+  white-space: nowrap;
+}
+
+#dica {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 96vw;
+  padding: 11px 17px;
+  border: 1px solid #d4a45170;
+  border-radius: 30px;
+  background: #100e0bc9;
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  #hud .marca {
+    top: 16px;
+    left: 12px;
+    font-size: 11px;
+  }
+
+  #hud .acoes {
+    top: 57px;
+    right: 10px;
+  }
+
+  #hud button {
+    padding: 9px 11px;
+  }
+
+  /* No celular, "VER EM LISTA" vira só "LISTA" para caber na linha. */
+  #hud .so-no-computador {
+    display: none;
+  }
+
+  #dica {
+    bottom: 16px;
+    padding: 10px;
+    font-size: 11px;
+  }
+}
+
+/* ---------- Versão em HTML ---------- */
+
+#vitrine-html {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 22px 0;
+  border-bottom: 1px solid #2d2418;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+}
+
+.topo .marca {
+  color: #e8b65b;
+  font-weight: 900;
+}
+
+.topo .assinatura {
+  color: #bcb09b;
+}
+
+.chamada {
+  padding: 48px 0 32px;
+}
+
+.chamada h1 {
+  margin: 0 0 12px;
+  font-size: clamp(36px, 8vw, 64px);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.chamada p {
+  max-width: 560px;
+  color: var(--texto-suave);
+  font-size: 18px;
+}
+
+.chamada-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.chamada-acoes button {
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.secoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.secao {
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--fundo-cartao);
+}
+
+.secao h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
+
+.secao h2 span {
+  margin-right: 10px;
+  color: #e5b760;
+}
+
+.secao .subtitulo {
+  margin: 4px 0 14px;
+  color: var(--texto-suave);
+}
+
+.secao ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.secao li {
+  margin-bottom: 6px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: var(--fundo-item);
+}
+
+.secao li::before {
+  content: '▣ ';
+  color: #e7b75b;
+}
+
+.secao .observacao {
+  margin: 12px 0 0;
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+.rodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #2d2418;
+  font-size: 14px;
+}
+
+/* Quem vende, exigido pelo Decreto 7.962/2013 (comércio eletrônico). */
+.rodape .vendedor {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+/* ---------- Janela de compra ---------- */
+
+dialog {
+  width: min(440px, calc(100vw - 32px));
+  padding: 24px;
+  border: 1px solid #5b4a33;
+  border-radius: 14px;
+  background: #17120c;
+  color: var(--texto);
+}
+
+dialog::backdrop {
+  background: #000a;
+}
+
+dialog h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+dialog .detalhe {
+  margin: 0 0 18px;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+dialog label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+dialog .aceite {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+dialog .aceite input {
+  margin-top: 4px;
+}
+
+dialog .erro {
+  color: var(--erro);
+  font-size: 14px;
+}
+
+.dialogo-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

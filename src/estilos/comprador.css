@@ -1,0 +1,95 @@
+/* Página do comprador e páginas de texto (termos, privacidade). */
+
+.pagina {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.topo {
+  padding: 22px 0;
+  border-bottom: 1px solid #2d2418;
+}
+
+.topo .marca {
+  color: #e8b65b;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+}
+
+h1 {
+  margin: 32px 0 8px;
+  font-size: clamp(26px, 6vw, 38px);
+}
+
+h2 {
+  margin: 32px 0 12px;
+  font-size: 20px;
+}
+
+.detalhe {
+  color: var(--texto-suave);
+}
+
+.faixa {
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: #2a1f12;
+}
+
+.arquivos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.arquivos li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 16px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--fundo-cartao);
+}
+
+.arquivos li span {
+  grid-column: 1;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.arquivos li button {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+form label {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.resposta {
+  margin-top: 14px;
+}
+
+.texto-legal {
+  color: var(--texto-suave);
+}
+
+.texto-legal strong {
+  color: var(--texto);
+}
+
+.rodape {
+  display: flex;
+  gap: 18px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #2d2418;
+  font-size: 14px;
+}

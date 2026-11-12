@@ -1,0 +1,105 @@
+/*
+ * Base visual de todas as páginas: cores, tipografia e botões.
+ * As cores ficam em variáveis para mudar o tema num lugar só.
+ */
+
+:root {
+  --fundo: #100d09;
+  --fundo-cartao: #1c160f;
+  --fundo-item: #2b271f;
+  --texto: #f6e8c9;
+  --texto-suave: #c9bca4;
+  --dourado: #e2ad48;
+  --dourado-claro: #ffdc92;
+  --borda: #e1ba70;
+  --erro: #ff9b85;
+  --raio: 9px;
+  --fonte: Arial, Helvetica, sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--dourado-claro);
+}
+
+button {
+  border: 1px solid var(--borda);
+  background: #20170eeb;
+  color: var(--dourado-claro);
+  padding: 11px 13px;
+  border-radius: var(--raio);
+  font: 800 12px var(--fonte);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--dourado-claro);
+  outline-offset: 2px;
+}
+
+.botao-comprar {
+  background: var(--dourado);
+  color: #1a1207;
+}
+
+.botao-secundario {
+  background: transparent;
+}
+
+input[type='text'],
+input[type='email'] {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 12px;
+  border: 1px solid #5b4a33;
+  border-radius: var(--raio);
+  background: #120e0a;
+  color: var(--texto);
+  font: 16px var(--fonte); /* 16px evita o zoom automático no iPhone */
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Aviso flutuante (usado por avisos.js) */
+#aviso {
+  position: fixed;
+  bottom: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  max-width: 90vw;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #231a11ee;
+  font-size: 12px;
+  text-align: center;
+}
